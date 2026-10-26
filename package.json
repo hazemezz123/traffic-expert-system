@@ -1,0 +1,9 @@
+{
+  "name": "traffic-expert-system",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "assets": "node scripts/fetch-assets.mjs"
+  }
+}

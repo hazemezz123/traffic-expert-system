@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10202b">
+  <title>Traffic Expert System</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main id="app">
+    <canvas id="scene" aria-label="Interactive 3D traffic intersection"></canvas>
+
+    <div id="loading" role="status" aria-live="polite">
+      <strong>Traffic Expert System</strong>
+      <span id="loading-text">Preparing intersection…</span>
+    </div>
+
+    <section id="toolbar" aria-label="Simulation controls">
+      <button id="toggle-running" type="button">Pause</button>
+      <button id="reset" type="button">Reset</button>
+      <button id="next-light" type="button">Next light</button>
+      <label class="speed-control" for="speed">
+        <span id="speed-label">Speed</span>
+        <input id="speed" type="range" min="0.5" max="3" step="0.5" value="1">
+        <output id="speed-value" for="speed">1×</output>
+      </label>
+      <button id="toggle-stats" type="button" aria-pressed="false">Stats</button>
+      <button id="toggle-language" type="button">العربية</button>
+    </section>
+
+    <output id="stats" class="hidden" aria-live="off">FPS: 0 · Calls: 0</output>
+
+    <aside id="expert-panel" aria-label="Expert system inspector">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow" id="panel-eyebrow">Rule-based AI</p>
+          <h1 id="panel-title">Traffic Expert System</h1>
+        </div>
+        <button id="collapse-panel" class="icon-button" type="button" aria-expanded="true" aria-controls="panel-body" aria-label="Collapse expert panel">×</button>
+      </header>
+
+      <div id="panel-body">
+        <div class="status-row">
+          <span><span id="light-label">Light</span>: <strong id="light-state">RED</strong></span>
+          <span><span id="timer-label">Timer</span>: <strong id="light-timer">8.0s</strong></span>
+          <span><span id="car-label">Car</span>: <strong id="selected-car">—</strong></span>
+        </div>
+
+        <section class="panel-section" aria-labelledby="facts-title">
+          <div class="section-heading">
+            <h2 id="facts-title">Live facts</h2>
+            <button id="why" type="button" disabled>Why?</button>
+          </div>
+          <table>
+            <tbody id="facts-body"><tr><td colspan="2">Select a car</td></tr></tbody>
+          </table>
+        </section>
+
+        <section class="panel-section" aria-labelledby="rules-title">
+          <h2 id="rules-title">Rules</h2>
+          <ol id="rules-list" class="rules-list"></ol>
+        </section>
+
+        <section class="panel-section" aria-labelledby="log-title">
+          <h2 id="log-title">Recent decisions</h2>
+          <ol id="decision-log" class="decision-log"></ol>
+        </section>
+      </div>
+    </aside>
+
+    <dialog id="why-dialog" aria-labelledby="why-title">
+      <form method="dialog">
+        <div class="section-heading">
+          <h2 id="why-title">Why this decision?</h2>
+          <button class="icon-button" type="submit" aria-label="Close explanation">×</button>
+        </div>
+        <div id="why-content"></div>
+      </form>
+    </dialog>
+  </main>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
